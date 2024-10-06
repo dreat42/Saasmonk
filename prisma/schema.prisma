@@ -1,0 +1,35 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Movie {
+  id             Int      @id @default(autoincrement()) 
+  xata_id        String   @unique(map: "_pgroll_new_Movie_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  xata_version   Int      @default(0)
+  xata_createdat DateTime @default(now()) @db.Timestamptz(6)
+  xata_updatedat DateTime @default(now()) @db.Timestamptz(6)
+  Name           String?
+  Release_Date   String?  @map("Release Date")
+
+  reviews        Review[] 
+}
+
+model Review {
+  id             Int      @id @default(autoincrement()) 
+  xata_id        String   @unique(map: "_pgroll_new_Review_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  xata_version   Int      @default(0)
+  xata_createdat DateTime @default(now()) @db.Timestamptz(6)
+  xata_updatedat DateTime @default(now()) @db.Timestamptz(6)
+  MovieID        Int?     
+  Name           String?
+  Rating         Int?
+  Comment        String?
+
+  movie          Movie?   @relation(fields: [MovieID], references: [id]) 
+}
