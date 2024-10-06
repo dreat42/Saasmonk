@@ -3,6 +3,9 @@ import { useState } from "react";
 
 import { useMovies } from "../../../../context/MovieContext";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 const NewReview = () => {
   const { movies, loading } = useMovies();
 
