@@ -1,13 +1,12 @@
 "use client";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
-
 import { useMovies } from "../context/MovieContext";
 import { useState } from "react";
 import Link from "next/link";
 import NavBar from "../components/NavBar";
 import { FaSearch, FaEdit, FaTrash } from "react-icons/fa";
+
+export const dynamic = "force-dynamic";
 
 const Home = () => {
   const { movies, deleteMovie } = useMovies();

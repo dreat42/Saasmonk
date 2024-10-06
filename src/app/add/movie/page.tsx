@@ -2,7 +2,6 @@
 import { useState } from "react";
 
 export const dynamic = "force-dynamic";
-export const revalidate = 0;
 
 const CreateMovie = () => {
   const [name, setName] = useState("");
