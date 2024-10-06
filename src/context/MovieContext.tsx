@@ -103,7 +103,9 @@ export const MoviesProvider = ({ children }: { children: ReactNode }) => {
 
     const fetchMoviesAndReviews = async () => {
       try {
-        const response = await fetch("/api/getMoviesWithReviews");
+        const response = await fetch("/api/getMoviesWithReviews", {
+          cache: "no-store",
+        });
         if (response.ok) {
           const data = await response.json();
 
