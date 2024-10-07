@@ -112,13 +112,8 @@ export const MoviesProvider = ({ children }: { children: ReactNode }) => {
       cache: "no-store",
     });
 
-    if (response.ok) {
-      const data = await response.json();
       setMovies(data);
-      setMoviesAndReviewsLoading(false);
-    } else {
-      console.error("Failed to fetch movies and reviews");
-    }
+   
   } catch (error) {
     setMoviesAndReviewsLoading(false);
     console.error("Error:", error);
