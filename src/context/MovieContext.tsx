@@ -101,7 +101,7 @@ export const MoviesProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     setMoviesAndReviewsLoading(true);
 
-  const fetchMoviesAndReviews = async (payload) => {
+  const fetchMoviesAndReviews = async () => {
   try {
     const response = await fetch("/api/getMoviesWithReviews", {
       method: "POST",
