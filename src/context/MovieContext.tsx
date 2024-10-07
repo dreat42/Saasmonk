@@ -101,37 +101,27 @@ export const MoviesProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     setMoviesAndReviewsLoading(true);
 
- useEffect(() => {
- const fetchMoviesAndReviews = async () => {
-    try {
-      const response = await fetch("/api/getMoviesWithReviews", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({}),
-        cache: "no-store",
-      });
+    const fetchMoviesAndReviews = async () => {
+      try {
+        const response = await fetch("/api/getMoviesWithReviews", {
+          cache: "no-store",
+        });
+        if (response.ok) {
+          const data = await response.json();
 
-      if (!response.ok) {
-        const errorMessage = await response.text();
-        throw new Error(`Failed to fetch movies and reviews: ${errorMessage}`);
+          setMovies(data);
+
+          setMoviesAndReviewsLoading(false);
+        } else {
+          console.error("Failed to fetch movies and reviews");
+        }
+      } catch (error) {
+        setMoviesAndReviewsLoading(false);
+        console.error("Error:", error);
+      } finally {
+        setLoading(false);
       }
-
-      const data = await response.json();
-      setMovies(data);
-    } catch (error) {
-      console.error("Error:", error);
-    } finally {
-      setMoviesAndReviewsLoading(false);
-      setLoading(false);
-    }
-  };
-
-  fetchMoviesAndReviews();
-}, []);
-
-
+    };
 
     fetchMoviesAndReviews();
   }, []);
