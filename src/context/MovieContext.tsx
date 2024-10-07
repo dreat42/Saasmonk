@@ -4,7 +4,7 @@ import {
   useContext,
   useState,
   ReactNode,
-  useEffect,
+  useEffect,https://github.com/dreat42/Saasmonk/blob/main/src/context/MovieContext.tsx
 } from "react";
 
 type Review = {
@@ -108,7 +108,7 @@ export const MoviesProvider = ({ children }: { children: ReactNode }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({“test”:”test”}),
+      body: JSON.stringify({}),
       cache: "no-store",
     });
 
